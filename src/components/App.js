@@ -1,6 +1,7 @@
 import React from 'react';
 
-import Main from './common/routes/Main';
+
+import Main from './routes/Main';
 
 const App = () => (
   <div>
