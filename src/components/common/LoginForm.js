@@ -14,7 +14,7 @@ function FieldGroup({ id, label, help, ...props }) {
 
 const LoginForm = () => (
   <div>
-  <h3>Lorem ipsum dolor sit amet, cum.</h3>
+  <h3 style={{marginBottom: '20px'}}>Lorem ipsum dolor sit amet, cum.</h3>
     <form>
       <FieldGroup
         id="formControlsEmail"
@@ -29,10 +29,12 @@ const LoginForm = () => (
         placeholder="Enter password"
       />
 
-    <Button bsStyle="info" bsSize="large" block>Large button
-        Submit
+    <Button bsStyle="info" bsSize="large" block>
+      Sign in
       </Button>
     </form>
+
+    <p style={{paddingTop: '20px'}} className="text-center">Lorem ipsum <a href="#">dolor</a> sit amet, cum. </p>
   </div>
 );
 
