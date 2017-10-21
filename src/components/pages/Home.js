@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Header from '../common/Header';
-import LoginForm from '../common/LoginForm';
+import Login from '../Login';
 
 import {Grid, Row, Col, Jumbotron} from 'react-bootstrap';
 
@@ -11,9 +11,10 @@ const Home = () => (
     backgroundSize: 'cover',
     height: '100vh'
   }}>
+    <Header/>
     <Grid >
-      <Header/>
-      <Jumbotron bsClass={''} style={{
+
+      <div style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -29,11 +30,11 @@ const Home = () => (
             </h3>
           </Col>
           <Col lg={4} md={4}>
-            <LoginForm/>
+            <Login />
           </Col>
         </Row>
 
-      </Jumbotron>
+      </div>
 
     </Grid>
   </body>
