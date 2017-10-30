@@ -14,10 +14,18 @@ function FieldGroup({ id, label, help, ...props }) {
 }
 
 
-const LoginForm = (props) => (
+const SignUpForm = (props) => (
   <div>
   <h3 style={{marginBottom: '20px'}}>Lorem ipsum dolor sit amet, cum.</h3>
     <form onSubmit={props.formSubmit}>
+      <FieldGroup
+        id="formControlsEmail"
+        type="name"
+        name="name"
+        label="Name"
+        placeholder="Enter username"
+        onChange={props.formUpdate}
+      />
       <FieldGroup
         id="formControlsEmail"
         type="email"
@@ -41,17 +49,18 @@ const LoginForm = (props) => (
       bsSize="large"
       block
       >
-      Sign in
+      SIgn Up
       </Button>
     </form>
   </div>
 );
 
-LoginForm.propTypes = {
+SignUpForm.propTypes = {
+  name: PropTypes.string,
   email: PropTypes.string,
   password: PropTypes.string,
   formUpdate: PropTypes.func,
   formSubmit: PropTypes.func
 };
 
-export default LoginForm;
+export default SignUpForm;
