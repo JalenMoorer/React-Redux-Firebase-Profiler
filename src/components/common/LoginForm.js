@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { FormGroup, Button, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
+import { FormGroup, Button, ControlLabel, FormControl, HelpBlock }
+from 'react-bootstrap';
 
 function FieldGroup({ id, label, help, ...props }) {
   return (
