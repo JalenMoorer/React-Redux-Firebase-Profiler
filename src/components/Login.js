@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-
+import { connect } from 'react-redux';
+import { loginUser } from '../actions';
 import LoginForm from './common/LoginForm';
-
 
 class Login extends Component {
   constructor(props){
     super(props);
     this.state = {
+      //change state to redux
       email: '',
       password: ''
     }
@@ -21,9 +22,12 @@ class Login extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const { email, password } = this.state;
 
-    console.log('Form Submitted');
+    this.props.loginUser({ email, password});
+
   }
+
 
   render(){
     return (
@@ -37,4 +41,9 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = ({ auth }) => {
+  const { user, loading, error } = auth;
+  return { user, loading, error };
+}
+
+export default connect(mapStateToProps, {loginUser})(Login);

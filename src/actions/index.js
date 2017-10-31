@@ -1,9 +1,9 @@
 import firebase from 'firebase';
-import * from './types';
+import * as types from './types';
 
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {
-    dispatch({ type: LOGIN_USER});
+    dispatch({ type: types.LOGIN_USER});
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
@@ -13,7 +13,7 @@ export const loginUser = ({ email, password }) => {
 
 export const createUser = ({ name, email, password }) => {
     return(dispatch) => {
-      dispatch({ type: LOGIN_NEW_USER });
+      dispatch({ type: types.LOGIN_USER });
 
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(user => signUpUserSuccess(dispatch, user, name))
@@ -28,12 +28,13 @@ const signUpUserSuccess = (dispatch, user, name) => {
 };
 
 const loginUserSuccess = (dispatch, user) => {
+  console.log(user);
   dispatch({
-    type: LOGIN_USER_SUCCESS,
+    type: types.LOGIN_USER_SUCCESS,
     payload: user
   });
 };
 
-const loginUseFail = (dispatch) => {
-  dispatch({ type: LOGIN_USER_FAIL});
+const loginUserFail = (dispatch) => {
+  dispatch({ type: types.LOGIN_USER_FAIL});
 };
