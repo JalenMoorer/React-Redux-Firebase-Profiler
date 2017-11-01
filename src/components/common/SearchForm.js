@@ -13,8 +13,7 @@ import {
 
 const SearchForm = () => {
   return (
-    <Grid  fluid>
-      <Well>
+    <Grid fluid>
         <Row>
           <Form inline>
             <Col lg={5}>
@@ -29,14 +28,13 @@ const SearchForm = () => {
               </FormGroup>
             </Col>
             {' '}
-            <Col lg={2}>
-              <Button bsStyle="primary" type="Submit">
+            <Col lg={1}>
+              <Button block bsStyle="primary" type="Submit">
                 SEARCH
               </Button>
             </Col>
           </Form>
         </Row>
-      </Well>
     </Grid>
   );
 }

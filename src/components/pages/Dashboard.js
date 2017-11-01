@@ -20,10 +20,10 @@ class Dashboard extends Component {
         <Header/>
         <Grid style={{height: "100%"}} fluid>
           <Row style={{height: "100%"}}>
-            <Col style={{height: "100%"}} lg={4} md={4}>
+            <Col style={{background: "#f9f9f9", padding: "17px", height: "100%"}} lg={2} md={2}>
               <Navigation />
             </Col>
-            <Col lg={8} md={8}>
+            <Col style={{ padding: "17px"}} lg={10} md={10}>
               <Search />
             </Col>
           </Row>
