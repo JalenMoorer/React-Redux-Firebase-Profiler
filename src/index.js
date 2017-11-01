@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 
 ReactDOM.render((
   <BrowserRouter>
-    <App />
+    <App style={{height: "100%"}} />
   </BrowserRouter>
 ), document.getElementById('root'));
 registerServiceWorker();

@@ -4,7 +4,7 @@ import { Navbar } from 'react-bootstrap';
 
 const Header = () => (
 
-  <Navbar  style={{marginBottom: '0px'}}  >
+  <Navbar fluid  style={{marginBottom: '0px'}}  >
     <Navbar.Header>
       <Navbar.Brand>
         <a href="#">Lorem Ipsum</a>
