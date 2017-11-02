@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import history from '../components/routes/History';
 import * as types from './types';
 
 export const loginUser = ({ email, password }) => {
@@ -33,6 +34,8 @@ const loginUserSuccess = (dispatch, user) => {
     type: types.LOGIN_USER_SUCCESS,
     payload: user
   });
+
+  history.push('/dashboard');
 };
 
 const loginUserFail = (dispatch) => {
