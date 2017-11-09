@@ -22,6 +22,18 @@ export const createUser = ({ name, email, password }) => {
     }
 }
 
+export const getUser = () => {
+  return(dispatch) => {
+    firebase.auth().onAuthStateChanged((user) => {
+        console.log(user)
+        dispatch({ type: types.LOGIN_GET_USER});
+
+        if(!user)
+         history.push('/');
+      });
+    }
+}
+
 const signUpUserSuccess = (dispatch, user, name) => {
   user.updateProfile({ displayName: name })
     .then(() => loginUserSuccess(dispatch, user))

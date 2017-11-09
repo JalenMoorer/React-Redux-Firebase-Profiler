@@ -7,8 +7,7 @@ import {
   Button,
   Col,
   Grid,
-  Row,
-  Well
+  Row
 } from 'react-bootstrap'
 
 const SearchForm = () => {
@@ -29,7 +28,7 @@ const SearchForm = () => {
             </Col>
             {' '}
             <Col lg={1}>
-              <Button block bsStyle="primary" type="Submit">
+              <Button block bsStyle="primary" type="submit">
                 SEARCH
               </Button>
             </Col>

@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
-
+import firebase from 'firebase';
 import Header from '../common/Header';
 import Login from '../Login';
 import SignUp from '../SignUp';
+import history from '../routes/History';
+import { connect } from 'react-redux';
+import { getUser } from '../../actions';
 
-import {Grid, Row, Col, Jumbotron} from 'react-bootstrap';
+import {Grid, Row, Col} from 'react-bootstrap';
 
 class Home extends Component {
 
@@ -14,6 +17,12 @@ class Home extends Component {
     this.state = {
       signUp: false
     }
+  }
+
+  componentWillMount(){
+     console.log('cwm fired');
+     this.props.getUser();
+     console.log('cwm finished');
   }
 
   render() {
@@ -30,7 +39,7 @@ class Home extends Component {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            height: '65vh'
+            paddingTop: '10%'
           }}>
             <Row >
               <Col lg={8} md={8}>
@@ -66,4 +75,9 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = ({ auth }) => {
+  const { user, loading, error } = auth;
+  return { user, loading, error };
+}
+
+export default connect(mapStateToProps,{getUser})(Home);

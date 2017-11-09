@@ -1,18 +1,22 @@
 import React, {Component} from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
+import { connect } from 'react-redux';
+import firebase from 'firebase';
+import history from '../routes/History';
 
 import Header from '../common/Header';
 import Navigation from '../common/Navigation';
-
 import Search from '../Search';
-
-import { Well } from 'react-bootstrap'
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
 
   }
+
+ componentWillMount(){
+
+ }
 
   render() {
     return (
@@ -33,4 +37,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default connect(null, null)(Dashboard);
