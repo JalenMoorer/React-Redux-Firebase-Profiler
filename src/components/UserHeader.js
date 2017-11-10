@@ -1,47 +1,33 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { logoutUser } from '../actions';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {logoutUser} from '../actions';
 
 import Header from './common/Header';
 
 class UserHeader extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-
-    this.state = {
-      user: ''
-    }
 
     this.onUserLogout = this.onUserLogout.bind(this);
   }
 
-  onUserLogout(e){
+  onUserLogout(e) {
     this.props.logoutUser();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(this.props.user)
-      this.setState({user: this.props.user.displayName})
-    else {
-        this.setState({user: ''});
+  render() {
+    if (this.props.user) {
+      return (<Header username={this.props.user.displayName} logout={this.onUserLogout}/>);
+    } else {
+      return (<Header username="" logout={this.onUserLogout}/>);
     }
-  }
-
-  render(){
-    return(
-      <Header
-        username={this.state.user}
-        logout={this.onUserLogout}/>
-    );
   }
 }
 
+const mapStateToProps = ({auth}) => {
+  const {user} = auth;
 
-
-const mapStateToProps = ({ auth }) => {
-  const { user } = auth;
-
-  return { user };
+  return {user};
 }
 
 export default connect(mapStateToProps, {logoutUser})(UserHeader);
