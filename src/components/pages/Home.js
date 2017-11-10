@@ -5,9 +5,8 @@ import Login from '../Login';
 import SignUp from '../SignUp';
 import history from '../routes/History';
 import { connect } from 'react-redux';
-import { getUser } from '../../actions';
 
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Grid, Row, Col, Navbar, Nav, NavItem } from 'react-bootstrap';
 
 class Home extends Component {
 
@@ -20,9 +19,8 @@ class Home extends Component {
   }
 
   componentWillMount(){
-     console.log('cwm fired');
-     this.props.getUser();
-     console.log('cwm finished');
+     if(this.props.user)
+      history.push('/dashboard');
   }
 
   render() {
@@ -32,8 +30,22 @@ class Home extends Component {
         backgroundSize: 'cover',
         height: '100vh'
       }}>
-        <Header/>
+
         <Grid >
+
+          <Navbar fluid>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <a>Lorem Ipsum</a>
+              </Navbar.Brand>
+            </Navbar.Header>
+            <Nav >
+              <NavItem eventKey={1}>About</NavItem>
+            </Nav>
+            <Nav pullRight>
+              <NavItem eventKey={1}>Test</NavItem>
+            </Nav>
+          </Navbar>
 
           <div style={{
             display: 'flex',
@@ -80,4 +92,4 @@ const mapStateToProps = ({ auth }) => {
   return { user, loading, error };
 }
 
-export default connect(mapStateToProps,{getUser})(Home);
+export default connect(mapStateToProps, null)(Home);

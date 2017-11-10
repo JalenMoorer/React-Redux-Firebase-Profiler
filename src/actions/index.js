@@ -12,6 +12,12 @@ export const loginUser = ({ email, password }) => {
   }
 }
 
+export const logoutUser = () => {
+  return(dispatch) => {
+    firebase.auth().signOut().then(() => logoutUserSuccess(dispatch));
+  }
+}
+
 export const createUser = ({ name, email, password }) => {
     return(dispatch) => {
       dispatch({ type: types.LOGIN_USER });
@@ -22,17 +28,12 @@ export const createUser = ({ name, email, password }) => {
     }
 }
 
-export const getUser = () => {
-  return(dispatch) => {
-    firebase.auth().onAuthStateChanged((user) => {
-        console.log(user)
-        dispatch({ type: types.LOGIN_GET_USER});
-
-        if(!user)
-         history.push('/');
-      });
-    }
-}
+export const getUserSuccess = (user) => {
+  return {
+    type: types.LOGIN_GET_USER,
+    payload: user
+  }
+};
 
 const signUpUserSuccess = (dispatch, user, name) => {
   user.updateProfile({ displayName: name })
@@ -49,6 +50,10 @@ const loginUserSuccess = (dispatch, user) => {
 
   history.push('/dashboard');
 };
+
+const logoutUserSuccess = (dispatch) => {
+  dispatch({ type: types.LOGOUT_USER});
+}
 
 const loginUserFail = (dispatch) => {
   dispatch({ type: types.LOGIN_USER_FAIL});

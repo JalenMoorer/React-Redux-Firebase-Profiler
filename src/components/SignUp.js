@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-
+import { createUser } from '../actions';
+import { connect } from 'react-redux';
 import SignUpForm from './common/SignUpForm';
 
 
@@ -22,8 +23,9 @@ class SignUp extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const { name, email, password } = this.state;
 
-    console.log('Form Submitted');
+    this.props.createUser({ name, email, password});
   }
 
   render(){
@@ -39,4 +41,9 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = ({ auth }) => {
+  const { user, loading, error } = auth;
+  return { user, loading, error };
+}
+
+export default connect(mapStateToProps, {createUser})(SignUp);
