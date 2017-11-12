@@ -6,7 +6,7 @@ import history from '../routes/History';
 
 import UserHeader from '../UserHeader';
 import Navigation from '../common/Navigation';
-import ProfileForm from '../common/ProfileForm';
+import UpdateProfile from '../UpdateProfile';
 
 class Profile extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ class Profile extends Component {
               <Navigation />
             </Col>
             <Col style={{ paddingTop: "48px", paddingLeft: "48px"}} lg={6} lgOffset={2} md={6} mdOffset={2} smOffset={3} >
-              <ProfileForm />
+              <UpdateProfile />
             </Col>
           </Row>
         </Grid>

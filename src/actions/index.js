@@ -35,9 +35,33 @@ export const getUserSuccess = (user) => {
   }
 };
 
+export const updateProfile = ({firstName,lastName,email,city,stateProvince,zipPostalCode,topSkills,describeYourself,resume}) => {
+  console.log('update profile called');
+  return(dispatch) => {
+    const user = firebase.auth().currentUser;
+
+    firebase.database().ref(`/users/${user.uid}/profile`)
+    .update({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      city: city,
+      stateProvince: stateProvince,
+      zipPostalCode: zipPostalCode,
+      topSkills: topSkills,
+      describeYourself: describeYourself,
+      resume: resume
+    })
+    dispatch({type: types.UPDATE_PROFILE_SUCCESS});
+  }
+}
+
 const signUpUserSuccess = (dispatch, user, name) => {
   user.updateProfile({ displayName: name })
-    .then(() => loginUserSuccess(dispatch, user))
+    .then(() => {
+      createData(user);
+      loginUserSuccess(dispatch, user)
+    })
     .catch(error => console.log(error));
 };
 
@@ -58,3 +82,18 @@ const logoutUserSuccess = (dispatch) => {
 const loginUserFail = (dispatch) => {
   dispatch({ type: types.LOGIN_USER_FAIL});
 };
+
+const createData = (user) => {
+  firebase.database().ref(`/users/${user.uid}/profile`)
+  .set({
+    firstName: '',
+    lastName: '',
+    email: '',
+    city: '',
+    stateProvince: '',
+    zipPostalCode: '',
+    topSkills: '',
+    describeYourself: '',
+    resume: ''
+  })
+}

@@ -14,19 +14,19 @@ import {
   PageHeader
 } from 'react-bootstrap';
 
-const ProfileForm = () => (
+const ProfileForm = (props) => (
 
   <div>
     <PageHeader>Update Profile {' '}
       <small>Update your profile to be used for job applications</small>
     </PageHeader>
-    <Form horizontal>
+    <Form onSubmit={props.onHandleSubmit} horizontal>
       <FormGroup bsSize="large" controlId="formHorizontalEmail">
         <Col componentClass={ControlLabel} sm={2}>
           First Name
         </Col>
         <Col sm={10}>
-          <FormControl type="text" placeholder="First Name"/>
+          <FormControl onChange={props.onHandleChange} name="firstName" type="text" placeholder="First Name"/>
         </Col>
       </FormGroup>
       <FormGroup bsSize="large" controlId="formHorizontalEmail">
@@ -34,7 +34,7 @@ const ProfileForm = () => (
           Last Name
         </Col>
         <Col sm={10}>
-          <FormControl type="text" placeholder="Last Name"/>
+          <FormControl onChange={props.onHandleChange} name="lastName" type="text" placeholder="Last Name"/>
         </Col>
       </FormGroup>
 
@@ -43,7 +43,7 @@ const ProfileForm = () => (
           Email
         </Col>
         <Col sm={10}>
-          <FormControl type="text" placeholder="Email"/>
+          <FormControl onChange={props.onHandleChange} name="email" type="text" placeholder="Email"/>
         </Col>
       </FormGroup>
 
@@ -52,7 +52,7 @@ const ProfileForm = () => (
           City
         </Col>
         <Col sm={10}>
-          <FormControl type="text" placeholder="City"/>
+          <FormControl onChange={props.onHandleChange} name="city" type="text" placeholder="City"/>
         </Col>
       </FormGroup>
 
@@ -61,7 +61,7 @@ const ProfileForm = () => (
           State/Province
         </Col>
         <Col sm={10}>
-          <FormControl type="text" placeholder="State/Province"/>
+          <FormControl onChange={props.onHandleChange} name="stateProvince" type="text" placeholder="State/Province"/>
         </Col>
       </FormGroup>
 
@@ -70,7 +70,7 @@ const ProfileForm = () => (
           Zip/Postal Code
         </Col>
         <Col sm={10}>
-          <FormControl type="text" placeholder="Zip/Postal Code"/>
+          <FormControl onChange={props.onHandleChange} name="zipPostalCode" type="text" placeholder="Zip/Postal Code"/>
         </Col>
       </FormGroup>
 
@@ -79,7 +79,7 @@ const ProfileForm = () => (
           List your top skills
         </Col>
         <Col sm={10}>
-          <FormControl componentClass="textarea" placeholder="List your top skills"/>
+          <FormControl onChange={props.onHandleChange} name="topSkills" componentClass="textarea" placeholder="List your top skills"/>
         </Col>
       </FormGroup>
 
@@ -88,7 +88,7 @@ const ProfileForm = () => (
           Describe Yourself
         </Col>
         <Col sm={10}>
-          <FormControl componentClass="textarea" placeholder="Describe yourself"/>
+          <FormControl onChange={props.onHandleChange} name="describeYourself" componentClass="textarea" placeholder="Describe yourself"/>
         </Col>
       </FormGroup>
 
@@ -97,7 +97,7 @@ const ProfileForm = () => (
           Upload resume
         </Col>
         <Col sm={10}>
-          <FormControl type="file" style={{
+          <FormControl onChange={props.onHandleChange} name="resume" type="file" style={{
             fontSize: "large"
           }} placeholder="Upload file"/>
         </Col>
