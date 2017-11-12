@@ -6,12 +6,11 @@ import history from '../routes/History';
 
 import UserHeader from '../UserHeader';
 import Navigation from '../common/Navigation';
-import Search from '../Search';
+import ProfileForm from '../common/ProfileForm';
 
-class Dashboard extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
-
   }
 
  componentWillMount(){
@@ -33,24 +32,24 @@ class Dashboard extends Component {
         <Grid style={{height: "100%"}} fluid>
           <Row style={{height: "100%"}}>
             <Col style={{
-                  background: "#f9f9f9",
-                  paddingTop: "17px",
-                  position: "fixed",
-                  top: "51px",
-                  bottom: 0,
-                  left: 0,
-                  zIndex: 1000,
-                  display: "block",
-                  padding: "20px",
-                  overflowX: "hidden",
-                  overflowY: "auto",
-                  borderRight: "1px solid #eee"
-                }}
-              >
+              background: "#f9f9f9",
+              paddingTop: "17px",
+              position: "fixed",
+              top: "51px",
+              bottom: 0,
+              left: 0,
+              zIndex: 1000,
+              display: "block",
+              padding: "20px",
+              overflowX: "hidden",
+              overflowY: "auto",
+              borderRight: "1px solid #eee"
+            }}
+            lg={2} md={2} sm={3}>
               <Navigation />
             </Col>
-            <Col style={{ padding: "17px"}} lg={10} md={10}>
-              <Search />
+            <Col style={{ paddingTop: "48px", paddingLeft: "48px"}} lg={6} lgOffset={2} md={6} mdOffset={2} smOffset={3} >
+              <ProfileForm />
             </Col>
           </Row>
         </Grid>
@@ -66,4 +65,4 @@ const mapStateToProps = ({ auth }) => {
 }
 
 
-export default connect(mapStateToProps, null)(Dashboard);
+export default connect(mapStateToProps, null)(Profile);
