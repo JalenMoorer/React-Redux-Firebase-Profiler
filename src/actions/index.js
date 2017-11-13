@@ -51,8 +51,15 @@ export const updateProfile = ({firstName,lastName,email,city,stateProvince,zipPo
       topSkills: topSkills,
       describeYourself: describeYourself,
       resume: resume
-    })
-    dispatch({type: types.UPDATE_PROFILE_SUCCESS});
+    }).then(error =>{
+      if(!error){
+        firebase.storage().ref(`User Resumes/${user.uid}/${user.displayName} Resume`).put(resume)
+          .then(snapshot => dispatch({type: types.UPDATE_PROFILE_SUCCESS}))
+      }
+      else {
+        console.log('error');
+      }
+    });
   }
 }
 

@@ -25,7 +25,12 @@ class UpdateProfile extends Component {
   }
 
   handleChange(e) {
-    this.setState({[e.target.name]: e.target.value});
+    if(e.target.name == 'resume') {
+      this.setState({[e.target.name]: e.target.files[0]});
+    }
+    else{
+      this.setState({[e.target.name]: e.target.value});
+    }
   }
 
   handleSubmit(e) {

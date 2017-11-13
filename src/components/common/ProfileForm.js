@@ -97,7 +97,7 @@ const ProfileForm = (props) => (
           Upload resume
         </Col>
         <Col sm={10}>
-          <FormControl onChange={props.onHandleChange} name="resume" type="file" style={{
+          <FormControl onChange={props.onHandleChange} name="resume" type="file" accept='application/msword,application/pdf' style={{
             fontSize: "large"
           }} placeholder="Upload file"/>
         </Col>
