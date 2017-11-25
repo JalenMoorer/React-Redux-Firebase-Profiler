@@ -23,7 +23,7 @@ export const createUser = ({ name, email, password }) => {
       dispatch({ type: types.LOGIN_USER });
 
       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(user => signUpUserSuccess(dispatch, user, name))
+        .then(user => signUpUserSuccess(dispatch, user, name, email))
         .catch(() => loginUserFail(dispatch));
     }
 }
@@ -44,7 +44,6 @@ export const updateProfile = ({firstName,lastName,email,city,stateProvince,zipPo
     .update({
       firstName: firstName,
       lastName: lastName,
-      email: email,
       city: city,
       stateProvince: stateProvince,
       zipPostalCode: zipPostalCode,
@@ -63,10 +62,24 @@ export const updateProfile = ({firstName,lastName,email,city,stateProvince,zipPo
   }
 }
 
-const signUpUserSuccess = (dispatch, user, name) => {
+export const getProfileInfo = () => {
+  console.log('get profile info called');
+  return(dispatch) => {
+    const user = firebase.auth().currentUser;
+
+    const profileData = firebase.database().ref(`/users/${user.uid}/profile`);
+        profileData.once("value")
+        .then((snapshot) => {
+          dispatch({type: types.GET_PROFILE_SUCCESS, payload: snapshot.val() })
+        })
+        .catch(error => console.log(error));
+    }
+}
+
+const signUpUserSuccess = (dispatch, user, name, email) => {
   user.updateProfile({ displayName: name })
     .then(() => {
-      createData(user);
+      createData(user, name, email);
       loginUserSuccess(dispatch, user)
     })
     .catch(error => console.log(error));
@@ -90,12 +103,13 @@ const loginUserFail = (dispatch) => {
   dispatch({ type: types.LOGIN_USER_FAIL});
 };
 
-const createData = (user) => {
+const createData = (user, name, email) => {
   firebase.database().ref(`/users/${user.uid}/profile`)
   .set({
+    username: name,
+    email: email,
     firstName: '',
     lastName: '',
-    email: '',
     city: '',
     stateProvince: '',
     zipPostalCode: '',

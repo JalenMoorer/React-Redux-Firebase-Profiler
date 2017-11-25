@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateProfile } from '../actions';
+import { updateProfile, getProfileInfo } from '../actions';
 
 import ProfileForm from './common/ProfileForm';
 
@@ -17,11 +17,27 @@ class UpdateProfile extends Component {
       zipPostalCode: '',
       topSkills: '',
       describeYourself: '',
-      resume: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.getProfileInfo();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      firstName: nextProps.profileData.firstName,
+      lastName: nextProps.profileData.lastName,
+      email: nextProps.profileData.email,
+      city: nextProps.profileData.city,
+      stateProvince: nextProps.profileData.stateProvince,
+      zipPostalCode: nextProps.profileData.zipPostalCode,
+      topSkills: nextProps.profileData.topSkills,
+      describeYourself: nextProps.profileData.describeYourself,
+    });
   }
 
   handleChange(e) {
@@ -48,14 +64,14 @@ class UpdateProfile extends Component {
     } = this.state;
 
     this.props.updateProfile({firstName,
-          lastName,
-          email,
-          city,
-          stateProvince,
-          zipPostalCode,
-          topSkills,
-          describeYourself,
-          resume});
+      lastName,
+      email,
+      city,
+      stateProvince,
+      zipPostalCode,
+      topSkills,
+      describeYourself,
+      resume});
   }
 
   render(){
@@ -77,5 +93,12 @@ class UpdateProfile extends Component {
   }
 }
 
+const mapStateToProps = ({profile}) => {
+  const {profileData} = profile;
 
-export default connect(null, {updateProfile})(UpdateProfile);
+  console.log({profileData});
+
+  return {profileData};
+}
+
+export default connect(mapStateToProps, {updateProfile, getProfileInfo })(UpdateProfile);

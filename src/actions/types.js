@@ -7,3 +7,4 @@ export const LOGOUT_USER = 'logout_user';
 
 // Profile actions
 export const UPDATE_PROFILE_SUCCESS = 'update_profile_success';
+export const GET_PROFILE_SUCCESS = 'get_profile_success';
