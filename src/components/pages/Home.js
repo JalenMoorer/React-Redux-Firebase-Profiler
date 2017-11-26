@@ -42,9 +42,6 @@ class Home extends Component {
             <Nav >
               <NavItem eventKey={1}>About</NavItem>
             </Nav>
-            <Nav pullRight>
-              <NavItem eventKey={1}>Test</NavItem>
-            </Nav>
           </Navbar>
 
           <div style={{

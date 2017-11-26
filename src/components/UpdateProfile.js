@@ -17,6 +17,7 @@ class UpdateProfile extends Component {
       zipPostalCode: '',
       topSkills: '',
       describeYourself: '',
+      resume: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,16 +29,22 @@ class UpdateProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      firstName: nextProps.profileData.firstName,
-      lastName: nextProps.profileData.lastName,
-      email: nextProps.profileData.email,
-      city: nextProps.profileData.city,
-      stateProvince: nextProps.profileData.stateProvince,
-      zipPostalCode: nextProps.profileData.zipPostalCode,
-      topSkills: nextProps.profileData.topSkills,
-      describeYourself: nextProps.profileData.describeYourself,
-    });
+    if(nextProps.profileData) {
+      this.setState({
+        firstName: nextProps.profileData.firstName,
+        lastName: nextProps.profileData.lastName,
+        email: nextProps.profileData.email,
+        city: nextProps.profileData.city,
+        stateProvince: nextProps.profileData.stateProvince,
+        zipPostalCode: nextProps.profileData.zipPostalCode,
+        topSkills: nextProps.profileData.topSkills,
+        describeYourself: nextProps.profileData.describeYourself,
+      });
+    }
+    if(nextProps.resumeURL) {
+      console.log(nextProps.resumeURL);
+      this.setState({resume: nextProps.resumeURL})
+    }
   }
 
   handleChange(e) {
@@ -94,11 +101,10 @@ class UpdateProfile extends Component {
 }
 
 const mapStateToProps = ({profile}) => {
-  const {profileData} = profile;
+  const {profileData, resumeURL } = profile;
 
-  console.log({profileData});
 
-  return {profileData};
+  return {profileData, resumeURL };
 }
 
 export default connect(mapStateToProps, {updateProfile, getProfileInfo })(UpdateProfile);

@@ -36,7 +36,6 @@ export const getUserSuccess = (user) => {
 };
 
 export const updateProfile = ({firstName,lastName,email,city,stateProvince,zipPostalCode,topSkills,describeYourself,resume}) => {
-  console.log('update profile called');
   return(dispatch) => {
     const user = firebase.auth().currentUser;
 
@@ -63,17 +62,22 @@ export const updateProfile = ({firstName,lastName,email,city,stateProvince,zipPo
 }
 
 export const getProfileInfo = () => {
-  console.log('get profile info called');
   return(dispatch) => {
     const user = firebase.auth().currentUser;
 
     const profileData = firebase.database().ref(`/users/${user.uid}/profile`);
         profileData.once("value")
-        .then((snapshot) => {
-          dispatch({type: types.GET_PROFILE_SUCCESS, payload: snapshot.val() })
+        .then(snapshot => {
+          dispatch({ type: types.GET_PROFILE_SUCCESS, payload: snapshot.val() })
+          getResumeURL(dispatch, user)
         })
         .catch(error => console.log(error));
     }
+}
+
+export const getResumeURL = (dispatch, user) => {
+    const storageRef = firebase.storage().ref(`User Resumes/${user.uid}/${user.displayName} Resume`)
+    storageRef.getDownloadURL().then(url => dispatch({ type: types.GET_RESUME_SUCCESS, payload: url }) );
 }
 
 const signUpUserSuccess = (dispatch, user, name, email) => {
