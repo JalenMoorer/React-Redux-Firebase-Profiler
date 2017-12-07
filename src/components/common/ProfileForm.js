@@ -94,12 +94,16 @@ const ProfileForm = (props) => (
 
       <FormGroup bsSize="large" controlId="formControlsTextarea">
         <Col componentClass={ControlLabel} sm={2}>
-          Upload resume
+          Resume
         </Col>
         <Col sm={10}>
-          <FormControl onChange={props.onHandleChange} name="resume" type="file" accept='application/msword,application/pdf' style={{
-            fontSize: "large"
-          }} placeholder="Upload file"/>
+          {props.resume ?
+              <Button bsStyle="link" target="_blank" bsSize="large" href={props.resume}>Click here to view resume</Button>
+            :
+            <FormControl onChange={props.onHandleChange} name="resume" type="file" accept='application/msword,application/pdf' style={{
+              fontSize: "large"
+            }} placeholder="Upload file"/>
+          }
         </Col>
       </FormGroup>
 
@@ -112,6 +116,8 @@ const ProfileForm = (props) => (
           </Button>
         </Col>
       </FormGroup>
+
+
     </Form>
   </div>
 );

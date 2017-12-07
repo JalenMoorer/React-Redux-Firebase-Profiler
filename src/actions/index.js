@@ -52,10 +52,19 @@ export const updateProfile = ({firstName,lastName,email,city,stateProvince,zipPo
     }).then(error =>{
       if(!error){
         firebase.storage().ref(`User Resumes/${user.uid}/${user.displayName} Resume`).put(resume)
-          .then(snapshot => dispatch({type: types.UPDATE_PROFILE_SUCCESS}))
-      }
+          .then(snapshot => {
+            const data = snapshot;
+            firebase.database().ref(`/users/${user.uid}/profile`).update({resume: data.downloadURL})
+              .then(error => {
+                if(!error)
+                  dispatch({type: types.UPDATE_PROFILE_SUCCESS})
+                else
+                  console.log(error)
+              })
+            })
+          }
       else {
-        console.log('error');
+        console.log(error);
       }
     });
   }
@@ -68,14 +77,17 @@ export const getProfileInfo = () => {
     const profileData = firebase.database().ref(`/users/${user.uid}/profile`);
         profileData.once("value")
         .then(snapshot => {
-          dispatch({ type: types.GET_PROFILE_SUCCESS, payload: snapshot.val() })
-          getResumeURL(dispatch, user)
+          const data = snapshot.val();
+          dispatch({ type: types.GET_PROFILE_SUCCESS, payload: data })
+          if(data.resume)
+            getResumeURL(dispatch, user);
         })
         .catch(error => console.log(error));
     }
 }
 
 export const getResumeURL = (dispatch, user) => {
+
     const storageRef = firebase.storage().ref(`User Resumes/${user.uid}/${user.displayName} Resume`)
     storageRef.getDownloadURL().then(url => dispatch({ type: types.GET_RESUME_SUCCESS, payload: url }) );
 }
@@ -119,6 +131,6 @@ const createData = (user, name, email) => {
     zipPostalCode: '',
     topSkills: '',
     describeYourself: '',
-    resume: ''
+    resume: '',
   })
 }
