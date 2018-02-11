@@ -26,7 +26,13 @@ const ProfileForm = (props) => (
           First Name
         </Col>
         <Col sm={10}>
-          <FormControl onChange={props.onHandleChange} name="firstName" type="text" placeholder="First Name" value={props.firstName}/>
+          <FormControl
+            onChange={props.onHandleChange}
+            name="firstName"
+            type="text"
+            placeholder="First Name"
+            value={props.firstName}
+          />
         </Col>
       </FormGroup>
       <FormGroup bsSize="large" controlId="formHorizontalEmail">
@@ -34,7 +40,13 @@ const ProfileForm = (props) => (
           Last Name
         </Col>
         <Col sm={10}>
-          <FormControl onChange={props.onHandleChange} name="lastName" type="text" placeholder="Last Name" value={props.lastName}/>
+          <FormControl
+            onChange={props.onHandleChange}
+            name="lastName"
+            type="text"
+            placeholder="Last Name"
+            value={props.lastName}
+          />
         </Col>
       </FormGroup>
 
@@ -43,7 +55,14 @@ const ProfileForm = (props) => (
           Email
         </Col>
         <Col sm={10}>
-          <FormControl onChange={props.onHandleChange} name="email" type="text" placeholder="Email" value={props.email} readOnly/>
+          <FormControl
+            onChange={props.onHandleChange}
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={props.email}
+            readOnly
+          />
         </Col>
       </FormGroup>
 
@@ -52,7 +71,13 @@ const ProfileForm = (props) => (
           City
         </Col>
         <Col sm={10}>
-          <FormControl onChange={props.onHandleChange} name="city" type="text" placeholder="City" value={props.city}/>
+          <FormControl
+            onChange={props.onHandleChange}
+            name="city"
+            type="text"
+            placeholder="City"
+            value={props.city}
+          />
         </Col>
       </FormGroup>
 
@@ -61,7 +86,13 @@ const ProfileForm = (props) => (
           State/Province
         </Col>
         <Col sm={10}>
-          <FormControl onChange={props.onHandleChange} name="stateProvince" type="text" placeholder="State/Province" value={props.stateProvince}/>
+          <FormControl
+            onChange={props.onHandleChange}
+            name="stateProvince"
+            type="text"
+            placeholder="State/Province"
+            value={props.stateProvince}
+          />
         </Col>
       </FormGroup>
 
@@ -70,7 +101,13 @@ const ProfileForm = (props) => (
           Zip/Postal Code
         </Col>
         <Col sm={10}>
-          <FormControl onChange={props.onHandleChange} name="zipPostalCode" type="text" placeholder="Zip/Postal Code" value={props.zipPostalCode}/>
+          <FormControl
+            onChange={props.onHandleChange}
+            name="zipPostalCode"
+            type="text"
+            placeholder="Zip/Postal Code"
+            value={props.zipPostalCode}
+          />
         </Col>
       </FormGroup>
 

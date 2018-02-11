@@ -35,7 +35,7 @@ firebase.auth().onAuthStateChanged((user) => {
   ReactDOM.render((
     <Provider store={store}>
       <Router history={history}>
-        <App style={{height: "100%"}} />
+        <App />
       </Router>
     </Provider>
   ), document.getElementById('root'));

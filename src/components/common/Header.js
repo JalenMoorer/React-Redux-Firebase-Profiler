@@ -6,11 +6,13 @@ import {Navbar, Nav, NavItem} from 'react-bootstrap';
 
 const Header = (props) => (
 
-  <Navbar inverse fluid collapseOnSelect fixedTop style={{
-    marginBottom: '0px'
-  }}
-  onToggle={props.didToggle}
-  >
+  <Navbar
+      inverse
+      fluid
+      collapseOnSelect
+      fixedTop
+      onToggle={props.didToggle}
+    >
     <Navbar.Header>
       <Navbar.Brand>
         <a>Lorem Ipsum</a>
@@ -30,7 +32,6 @@ const Header = (props) => (
         <NavItem onClick={props.logout} href="#">Logout</NavItem>
       </Nav>
     </Navbar.Collapse>
-
   </Navbar>
 )
 

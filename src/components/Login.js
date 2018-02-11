@@ -27,8 +27,7 @@ class Login extends Component {
     this.props.loginUser({ email, password});
 
   }
-
-
+  
   render(){
     return (
       <LoginForm
